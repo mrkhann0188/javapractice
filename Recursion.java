@@ -1,3 +1,4 @@
+
 public class Recursion{
    /*public static void printdec(int n){
         if(n == 1){
@@ -71,7 +72,7 @@ public class Recursion{
             return i;
         }
         return isFound;
-    }*/
+    }
     //PROBLEM 9 
     public static int pow(int x, int n){
         if(n == 0){
@@ -81,6 +82,67 @@ public class Recursion{
         int xn = x *xm1;
         return xn;
     }
+    //PROBLEM 10
+    public static int poww(int x, int a){
+        if(a == 0){
+            return 1;
+        }
+        int halfp = poww(x,a/2);
+        int halfpsq = halfp*halfp;
+        if(a %2 != 0){
+            halfpsq = x * halfpsq;
+        }
+        return halfpsq;
+    }
+    //PROBLEM 11
+    public static int tillingp(int n){
+        if(n ==0 || n ==1){
+            return 1;
+        }
+        int fnm1 = tillingp(n-1);
+        int fnm2 = tillingp(n-2);
+        int tot = fnm1 +fnm2;
+        return tot;
+    }
+    // PROBLEM 12 
+    public static void removeDup(String str, int ind , StringBuilder newStr, boolean map[]){
+        if(ind == str.length()){
+            System.out.println(newStr);
+            return ;
+        }
+
+        char charc = str.charAt(ind);
+        if(map[charc - 'a']== true){
+            removeDup(str,ind+1,newStr,map);
+        }else{
+            map[charc - 'a'] = true;
+            removeDup(str,ind+1,newStr.append(charc),map);
+        }
+    }
+    // PROBLEM 13
+    public static int friendspair(int n){
+        if(n ==1 || n ==2 ){
+            return n;
+        }
+        int fnm1 = friendspair(n-1);
+        int fnm2 = friendspair(n-2);
+        int pways = (n-1)* fnm2;
+        int tways =fnm1 + pways;
+        return tways; 
+        // SINGLE LINE CODE 
+        // return friendspair(n-1) + (n-1)*friendspair(n-2);
+    }*/
+    public static void Binstr(int n ,int ls , String str){
+        if(n == 0){
+            System.out.println(str);
+            return ;
+        }
+        Binstr(n-1, 0, str+"0");
+        if(ls == 0)
+            Binstr(n-1, 1, str+"1");
+        
+    }
+
 
 
     public static void main(String[] args) {
@@ -100,7 +162,14 @@ public class Recursion{
         int arr[] = {8,3,6,9,5,10,2,5,3};
         // System.out.println(FirstOc(arr,5,0));
         int arr[] = {8,3,6,9,5,10,2,5,3};
-        System.out.println(LastOc(arr, 5, 0));*/
+        System.out.println(LastOc(arr, 5, 0));
         System.out.println(pow(2, 10));
+        System.out.println(poww(2,5));
+        System.out.println(tillingp(3));*
+        String str ="ayaankhan";
+        removeDup(str,0,new StringBuilder(""), new boolean [26]);
+        System.out.println(friendspair(3)); */
+        Binstr(3, 0, "");
+
     }
 }
